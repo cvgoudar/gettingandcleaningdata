@@ -1,9 +1,3 @@
-
-
-### Uses descriptive activity names to name the activities in the data set
-### Appropriately labels the data set with descriptive variable names. 
-### From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each ### activity and each subject.
-
 ## Downloading the Dataset & unzipping the file
 ### Dataset is unzipped with folder name "UCI HAR Dataset
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -53,12 +47,12 @@ library(tidyr)
 df_mean <- select(df, contains("mean()"))
 df_std  <- select(df, contains("std()"))
 
+# From the data set creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 har_mean_std <- data.frame(df[,1:2], df_mean, df_std)
-
 by_aid_sid <- group_by(har_mean_std, Activity, SubjectID)
-
 mean_aid_sid <- summarise_each(by_aid_sid, funs(mean), 3:68)
 
+# Appropriately labels the data set with descriptive variable names. 
 nms <- c(names(df_mean),names(df_std))
 idx_num <- unlist(gregexpr('_', proc_nms))
 proc_nms <- substring(proc_nms, idx_num)                  
