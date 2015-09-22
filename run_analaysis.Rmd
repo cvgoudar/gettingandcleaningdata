@@ -1,4 +1,10 @@
 
+
+### Extracts only the measurements on the mean and standard deviation for each measurement. 
+### Uses descriptive activity names to name the activities in the data set
+### Appropriately labels the data set with descriptive variable names. 
+### From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each ### activity and each subject.
+
 ## Downloading the Dataset & unzipping the file
 ### Dataset is unzipped with folder name "UCI HAR Dataset
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -32,7 +38,8 @@ X_test <- read.table(X_test_fname)
 y_test_fname <- "UCI HAR Dataset/test/y_test.txt"
 y_test <- read.table(y_test_fname)
 
-# joining the datasets
+### Merges the training and the test sets to create one data set.
+### joining the datasets
 train_df <- data.frame(y_train,subject_train,X_train)
 test_df <-  data.frame(y_test, subject_test, X_test)
 df <- rbind(train_df,test_df)
