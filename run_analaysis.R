@@ -1,5 +1,5 @@
-## Downloading the Dataset & unzipping the file
-### Dataset is unzipped with folder name "UCI HAR Dataset
+# Downloading the Dataset & unzipping the file
+# Dataset is unzipped with folder name "UCI HAR Dataset"
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 if(!file.exists("Dataset.zip"))
 {
@@ -7,7 +7,7 @@ if(!file.exists("Dataset.zip"))
 }
 unzip("Dataset.zip")
 
-## Reading feature file
+# Reading feature file
 
 features_fname <- "UCI HAR Dataset/features.txt"
 features <- read.table(features_fname, col.names=c("featureIdx","featureName"))
