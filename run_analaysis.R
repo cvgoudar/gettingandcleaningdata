@@ -1,6 +1,5 @@
 
 
-### Extracts only the measurements on the mean and standard deviation for each measurement. 
 ### Uses descriptive activity names to name the activities in the data set
 ### Appropriately labels the data set with descriptive variable names. 
 ### From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each ### activity and each subject.
@@ -38,8 +37,7 @@ X_test <- read.table(X_test_fname)
 y_test_fname <- "UCI HAR Dataset/test/y_test.txt"
 y_test <- read.table(y_test_fname)
 
-### Merges the training and the test sets to create one data set.
-### joining the datasets
+### Merging the training and the test sets to create one data set.
 train_df <- data.frame(y_train,subject_train,X_train)
 test_df <-  data.frame(y_test, subject_test, X_test)
 df <- rbind(train_df,test_df)
@@ -49,7 +47,8 @@ names(df) <- labels
 library(dplyr)
 library(tidyr)
 
-# Extract measurements on the mean and standard deviation for each measurement. 
+# Extracting only the measurements on the mean and standard deviation for each measurement. 
+# Assumption: mean() & std() are assumed as the only variables which are mean & std computations
 
 df_mean <- select(df, contains("mean()"))
 df_std  <- select(df, contains("std()"))
