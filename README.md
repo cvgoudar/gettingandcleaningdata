@@ -46,3 +46,16 @@ X_test <- read.table(X_test_fname)
 y_test_fname <- "UCI HAR Dataset/test/y_test.txt"
 y_test <- read.table(y_test_fname)
 ```
+
+## Combining the data sets
+
+The training & test data set was combined to form a single data set. It was observed that the variable header names were not unique. Hence the labels were concatenated to create unique header names
+
+```{r}
+# joining the datasets
+train_df <- data.frame(y_train,subject_train,X_train)
+test_df <-  data.frame(y_test, subject_test, X_test)
+df <- rbind(train_df,test_df)
+labels <- c("Activity","SubjectID",as.character(paste(features[,1],features[,2],sep="_")))
+```
+names(df) <- labels
