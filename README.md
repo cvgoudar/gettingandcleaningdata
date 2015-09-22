@@ -23,6 +23,7 @@ unzip("Dataset.zip")
 The content is organized in multiple folders. After understand the structure of the data in the folder, the relevant features, training & test data is loaded into R tables
 
 ```{r}
+# Reading Features & Activity Labels content
 features_fname <- "UCI HAR Dataset/features.txt"
 features <- read.table(features_fname, col.names=c("featureIdx","featureName"))
 
