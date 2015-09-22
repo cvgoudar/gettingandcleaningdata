@@ -73,4 +73,26 @@ df_mean <- select(df, contains("mean()"))
 df_std  <- select(df, contains("std()"))
 har_mean_std <- data.frame(df[,1:2], df_mean, df_std)
 ```
+## Summarizing the average of variables
 
+summarize_each function of dplyr package was used to find the average of each variable grouped by Subject & Activity. The table has summarized values for each variable in long format.
+
+```{r}
+by_aid_sid <- group_by(har_mean_std, Activity, SubjectID)
+
+mean_aid_sid <- summarise_each(by_aid_sid, funs(mean), 3:68)
+
+nms <- c(names(df_mean),names(df_std))
+idx_num <- unlist(gregexpr('_', proc_nms))
+proc_nms <- substring(proc_nms, idx_num)                  
+proc_nms <- paste0("mean",proc_nms)
+names(mean_aid_sid)[3:ncol(mean_aid_sid)] <- proc_nms
+```
+
+## Writing the output to text file
+
+Text file is created without row names for the tidy data.
+
+```{r}
+write.table(mean_aid_sid,"har_tidy.txt", row.names = FALSE)
+```
